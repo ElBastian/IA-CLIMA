@@ -6,15 +6,224 @@ const FORECAST_DAYS = 5;
 const COUNTRIES = [
   {
     name: "México",
-    cities: [
-      { name: "Ciudad de México", latitude: 19.4326, longitude: -99.1332 },
-      { name: "Guadalajara", latitude: 20.6597, longitude: -103.3496 },
-      { name: "Monterrey", latitude: 25.6866, longitude: -100.3161 },
-      { name: "Morelia", latitude: 19.706, longitude: -101.195 },
-      { name: "Puebla", latitude: 19.0414, longitude: -98.2063 },
-      { name: "Cancún", latitude: 21.1619, longitude: -86.8515 },
-      { name: "Tijuana", latitude: 32.5149, longitude: -117.0382 },
-      { name: "Mérida", latitude: 20.9674, longitude: -89.5926 }
+    // Los 32 estados, cada uno con su capital (y otras ciudades importantes).
+    states: [
+      {
+        name: "Aguascalientes",
+        cities: [
+          { name: "Aguascalientes", latitude: 21.8818, longitude: -102.2916 }
+        ]
+      },
+      {
+        name: "Baja California",
+        cities: [
+          { name: "Mexicali", latitude: 32.6245, longitude: -115.4523 },
+          { name: "Tijuana", latitude: 32.5149, longitude: -117.0382 },
+          { name: "Ensenada", latitude: 31.8667, longitude: -116.5964 }
+        ]
+      },
+      {
+        name: "Baja California Sur",
+        cities: [
+          { name: "La Paz", latitude: 24.1426, longitude: -110.3128 },
+          { name: "Los Cabos", latitude: 22.8905, longitude: -109.9167 }
+        ]
+      },
+      {
+        name: "Campeche",
+        cities: [
+          { name: "Campeche", latitude: 19.8301, longitude: -90.5349 },
+          { name: "Ciudad del Carmen", latitude: 18.6456, longitude: -91.829 }
+        ]
+      },
+      {
+        name: "Chiapas",
+        cities: [
+          { name: "Tuxtla Gutiérrez", latitude: 16.7516, longitude: -93.1029 },
+          { name: "San Cristóbal de las Casas", latitude: 16.737, longitude: -92.6376 },
+          { name: "Tapachula", latitude: 14.9039, longitude: -92.2575 }
+        ]
+      },
+      {
+        name: "Chihuahua",
+        cities: [
+          { name: "Chihuahua", latitude: 28.632, longitude: -106.0691 },
+          { name: "Ciudad Juárez", latitude: 31.6904, longitude: -106.4245 }
+        ]
+      },
+      {
+        name: "Ciudad de México",
+        cities: [
+          { name: "Ciudad de México", latitude: 19.4326, longitude: -99.1332 }
+        ]
+      },
+      {
+        name: "Coahuila",
+        cities: [
+          { name: "Saltillo", latitude: 25.4232, longitude: -101.0053 },
+          { name: "Torreón", latitude: 25.5428, longitude: -103.4068 }
+        ]
+      },
+      {
+        name: "Colima",
+        cities: [
+          { name: "Colima", latitude: 19.2433, longitude: -103.725 },
+          { name: "Manzanillo", latitude: 19.1138, longitude: -104.3385 }
+        ]
+      },
+      {
+        name: "Durango",
+        cities: [
+          { name: "Durango", latitude: 24.0277, longitude: -104.6532 }
+        ]
+      },
+      {
+        name: "Estado de México",
+        cities: [
+          { name: "Toluca", latitude: 19.2826, longitude: -99.6557 },
+          { name: "Ecatepec", latitude: 19.6018, longitude: -99.0507 }
+        ]
+      },
+      {
+        name: "Guanajuato",
+        cities: [
+          { name: "Guanajuato", latitude: 21.019, longitude: -101.2574 },
+          { name: "León", latitude: 21.125, longitude: -101.686 },
+          { name: "San Miguel de Allende", latitude: 20.9153, longitude: -100.7439 }
+        ]
+      },
+      {
+        name: "Guerrero",
+        cities: [
+          { name: "Chilpancingo", latitude: 17.5515, longitude: -99.5006 },
+          { name: "Acapulco", latitude: 16.8531, longitude: -99.8237 }
+        ]
+      },
+      {
+        name: "Hidalgo",
+        cities: [
+          { name: "Pachuca", latitude: 20.1011, longitude: -98.7591 }
+        ]
+      },
+      {
+        name: "Jalisco",
+        cities: [
+          { name: "Guadalajara", latitude: 20.6597, longitude: -103.3496 },
+          { name: "Puerto Vallarta", latitude: 20.6534, longitude: -105.2253 }
+        ]
+      },
+      {
+        name: "Michoacán",
+        cities: [
+          { name: "Morelia", latitude: 19.706, longitude: -101.195 },
+          { name: "Uruapan", latitude: 19.4136, longitude: -102.0624 },
+          { name: "Pátzcuaro", latitude: 19.5164, longitude: -101.6097 }
+        ]
+      },
+      {
+        name: "Morelos",
+        cities: [
+          { name: "Cuernavaca", latitude: 18.9242, longitude: -99.2216 }
+        ]
+      },
+      {
+        name: "Nayarit",
+        cities: [
+          { name: "Tepic", latitude: 21.5042, longitude: -104.8946 }
+        ]
+      },
+      {
+        name: "Nuevo León",
+        cities: [
+          { name: "Monterrey", latitude: 25.6866, longitude: -100.3161 }
+        ]
+      },
+      {
+        name: "Oaxaca",
+        cities: [
+          { name: "Oaxaca de Juárez", latitude: 17.0732, longitude: -96.7266 },
+          { name: "Puerto Escondido", latitude: 15.872, longitude: -97.0767 }
+        ]
+      },
+      {
+        name: "Puebla",
+        cities: [
+          { name: "Puebla", latitude: 19.0414, longitude: -98.2063 }
+        ]
+      },
+      {
+        name: "Querétaro",
+        cities: [
+          { name: "Querétaro", latitude: 20.5888, longitude: -100.3899 }
+        ]
+      },
+      {
+        name: "Quintana Roo",
+        cities: [
+          { name: "Chetumal", latitude: 18.5001, longitude: -88.2961 },
+          { name: "Cancún", latitude: 21.1619, longitude: -86.8515 },
+          { name: "Playa del Carmen", latitude: 20.6296, longitude: -87.0739 }
+        ]
+      },
+      {
+        name: "San Luis Potosí",
+        cities: [
+          { name: "San Luis Potosí", latitude: 22.1565, longitude: -100.9855 }
+        ]
+      },
+      {
+        name: "Sinaloa",
+        cities: [
+          { name: "Culiacán", latitude: 24.8091, longitude: -107.394 },
+          { name: "Mazatlán", latitude: 23.2494, longitude: -106.4111 }
+        ]
+      },
+      {
+        name: "Sonora",
+        cities: [
+          { name: "Hermosillo", latitude: 29.0729, longitude: -110.9559 },
+          { name: "Ciudad Obregón", latitude: 27.4828, longitude: -109.9304 }
+        ]
+      },
+      {
+        name: "Tabasco",
+        cities: [
+          { name: "Villahermosa", latitude: 17.9892, longitude: -92.9475 }
+        ]
+      },
+      {
+        name: "Tamaulipas",
+        cities: [
+          { name: "Ciudad Victoria", latitude: 23.7369, longitude: -99.1411 },
+          { name: "Tampico", latitude: 22.2331, longitude: -97.8611 },
+          { name: "Reynosa", latitude: 26.0508, longitude: -98.2979 }
+        ]
+      },
+      {
+        name: "Tlaxcala",
+        cities: [
+          { name: "Tlaxcala", latitude: 19.3139, longitude: -98.2404 }
+        ]
+      },
+      {
+        name: "Veracruz",
+        cities: [
+          { name: "Xalapa", latitude: 19.5438, longitude: -96.9102 },
+          { name: "Veracruz", latitude: 19.1738, longitude: -96.1342 }
+        ]
+      },
+      {
+        name: "Yucatán",
+        cities: [
+          { name: "Mérida", latitude: 20.9674, longitude: -89.5926 }
+        ]
+      },
+      {
+        name: "Zacatecas",
+        cities: [
+          { name: "Zacatecas", latitude: 22.7709, longitude: -102.5832 }
+        ]
+      }
     ]
   },
   {
@@ -96,7 +305,7 @@ const COUNTRIES = [
 ];
 
 const DEFAULT_COUNTRY = "México";
-const DEFAULT_CITY = "Morelia";
+const DEFAULT_CITY = "Michoacán|Morelia";
 
 // Códigos meteorológicos WMO que devuelve Open-Meteo.
 const WEATHER_CODES = {
@@ -190,17 +399,54 @@ function fillCountrySelect() {
 function fillCitySelect(countryName) {
   const country = findCountry(countryName);
   citySelect.innerHTML = "";
+
+  if (country.states) {
+    country.states.forEach((state) => {
+      const stateGroup = document.createElement("optgroup");
+      stateGroup.label = state.name;
+      state.cities.forEach((city) => {
+        stateGroup.append(new Option(city.name, createCityValue(state.name, city.name)));
+      });
+      citySelect.append(stateGroup);
+    });
+    return;
+  }
+
   country.cities.forEach((city) => {
-    citySelect.add(new Option(city.name, city.name));
+    citySelect.add(new Option(city.name, createCityValue("", city.name)));
   });
+}
+
+// El valor de cada opción incluye el estado para distinguir ciudades con el mismo nombre.
+function createCityValue(stateName, cityName) {
+  return `${stateName}|${cityName}`;
 }
 
 function findCountry(countryName) {
   return COUNTRIES.find((country) => country.name === countryName);
 }
 
-function findCity(countryName, cityName) {
-  return findCountry(countryName).cities.find((city) => city.name === cityName);
+function getCountryCities(country) {
+  if (!country.states) {
+    return country.cities.map((city) => ({ ...city, state: "" }));
+  }
+  return country.states.flatMap((state) =>
+    state.cities.map((city) => ({ ...city, state: state.name }))
+  );
+}
+
+function findCity(countryName, cityValue) {
+  const [stateName, cityName] = cityValue.split("|");
+  return getCountryCities(findCountry(countryName)).find(
+    (city) => city.state === stateName && city.name === cityName
+  );
+}
+
+function formatLocation(city, countryName) {
+  const parts = [city.name];
+  if (city.state && city.state !== city.name) parts.push(city.state);
+  parts.push(countryName);
+  return parts.join(", ");
 }
 
 // ===== API =====
@@ -293,11 +539,11 @@ function hideResults() {
   forecastEmpty.hidden = false;
 }
 
-function renderCurrentWeather(data, countryName, cityName) {
+function renderCurrentWeather(data, locationText) {
   const current = data.current;
   const weatherInfo = getWeatherInfo(current.weather_code);
 
-  document.getElementById("current-location").textContent = `${cityName}, ${countryName}`;
+  document.getElementById("current-location").textContent = locationText;
   document.getElementById("current-temperature").textContent = formatTemperature(current.temperature_2m);
   document.getElementById("current-condition").textContent = weatherInfo.text;
   document.getElementById("current-updated").textContent =
@@ -347,8 +593,8 @@ async function handleSearch(event) {
   event.preventDefault();
 
   const countryName = countrySelect.value;
-  const cityName = citySelect.value;
-  const city = findCity(countryName, cityName);
+  const city = findCity(countryName, citySelect.value);
+  const cityName = city.name;
 
   hideResults();
   showStatus(`Consultando el clima de ${cityName}…`, "loading");
@@ -356,7 +602,7 @@ async function handleSearch(event) {
 
   try {
     const data = await fetchWeather(city);
-    renderCurrentWeather(data, countryName, cityName);
+    renderCurrentWeather(data, formatLocation(city, countryName));
     renderForecast(data.daily);
   } catch (error) {
     showStatus(`No se pudo obtener el clima de ${cityName}. ${error.message} Inténtalo de nuevo.`, "error");

@@ -219,6 +219,17 @@ a:hover {
   transition: border-color 0.2s;
 }
 
+.search__select option,
+.search__select optgroup {
+  background: var(--color-carbon);
+  color: var(--color-porcelain);
+}
+
+.search__select optgroup {
+  color: var(--color-ash);
+  font-weight: 600;
+}
+
 .search__select:hover {
   border-color: var(--color-ash);
 }
